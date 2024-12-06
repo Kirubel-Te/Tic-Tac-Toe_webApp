@@ -1,49 +1,44 @@
 $(document).ready(() => {
+    let result;
+    
     let score = () => {
-        let winner;
-        if($(".first .first-one").text()===$(".first .first-two").text() && $(".first .first-three").text() === $(".first first-two").text()){
-            console.log("the winner is: "+ $(".first .first-one").text());
-            winner = $(".first .first-one").text();
-        }
-        else if($(".second .second-one").text() === $(".second .second-two").text() && $(".second .second-two").text()===$(".second .second-three").text()){
-            console.log("the winner is : "+ $(".second .second-one").text());
-            winner = $(".second .second-one").text();
-        }
-        else if($(".third .third-one").text()===$(".third .third-two").text() && $(".third .third-two").text()===$(".third .third-three").text()){
-            console.log("the winner is : "+$(".third .third-one").text())
-            winner = $(".third .third-one").text();
-        }
-        else if($(".first .first-one").text()===$(".second .second-one").text()&&$(".second .second-one").text()===$(".third .third-one").text()){
-            console.log("the winner is : "+$(".first .first-one").text());
-            winner = $(".first .first-one").text();
-        }
-        else if($(".first .first-two").text()===$(".second .second-two").text()&&$(".second .second-two").text()===$(".third .third-two").text()){
-            console.log("the winner is : "+$(".third .third-two").text());
-            winner = $(".third .third-two").text();
-        }
-        else if($(".first .first-three").text()===$(".second .second-three").text()&&$(".second .second-three").text()===$(".third .third-three").text()){
-            console.log("the winner is : "+$(".first .first-three").text());
-            winner = $(".first .first-three").text();
-        }
-        else if($(".first .first-one").text()===$(".second .second-two").text()&&$(".second .second-two").text()===$(".third .third-three").text()){
-            console.log("the winner is : "+$(".third .third-three").text());
-            winner = $(".third .third-three").text();
-        }
-        else if($(".first .first-three").text()===$(".second .second-two").text()&&$(".second .second-two").text()===$(".third .third-one").text()){
-            console.log("the winner is : "+$(".first .first-three").text());
-            winner = $(".first .first-three");
-        }
-        else{
-            if(count >= 9){
-                console.log("it is a draw");
-                winner="draw";
-            }
-            else{
-                console.log("let's continue");
+        let winner = null;
+        const winningCombos = [
+            // Rows
+            [".first .first-one", ".first .first-two", ".first .first-three"],
+            [".second .second-one", ".second .second-two", ".second .second-three"],
+            [".third .third-one", ".third .third-two", ".third .third-three"],
+            // Columns
+            [".first .first-one", ".second .second-one", ".third .third-one"],
+            [".first .first-two", ".second .second-two", ".third .third-two"],
+            [".first .first-three", ".second .second-three", ".third .third-three"],
+            // Diagonals
+            [".first .first-one", ".second .second-two", ".third .third-three"],
+            [".first .first-three", ".second .second-two", ".third .third-one"]
+        ];
+    
+        // Check each winning combination
+        for (let combo of winningCombos) {
+            const [a, b, c] = combo;
+    
+            if (
+                $(a).text() !== "" &&
+                $(a).text() === $(b).text() &&
+                $(b).text() === $(c).text()
+            ) {
+                winner = $(a).text();
+                break;
             }
         }
+    
+        if (!winner && count >= 8) {
+            console.log("It's a draw.");
+            winner = "draw";
+        }
+    
         return winner;
-    }
+    };
+    
     let count = 0;
     let player_one = "O";
     let player_two = "X";
@@ -55,16 +50,20 @@ $(document).ready(() => {
             else{
                 $(".first .first-one").text(player_two);
             }
-            count++;
-            if(score() != "draw" && score() != null){
-                console.log(score());
+            result = score();
+            if(result === "X" || result === "O"){
+                console.log("the winner is : "+ result);
             }
-            else if(score() === "draw"){
-                console.log(score());
+            else if(result === "draw"){
+                console.log("the result is : draw");
             }
             else{
                 console.log("continue");
             }
+            count++;
+        }
+        else{
+            console.log("the cell is already occupied");
         }
     });
 
@@ -76,16 +75,20 @@ $(document).ready(() => {
             else{
                 $(".first .first-two").text(player_two);
             }
-            count++;
-            if(score() != "draw" && score() != null){
-                console.log(score());
+            result = score();
+            if(result === "X" || result === "O"){
+                console.log("the winner is : "+ result);
             }
-            else if(score() === "draw"){
-                console.log(score());
+            else if(result === "draw"){
+                console.log("the result is : draw");
             }
             else{
                 console.log("continue");
             }
+            count++;
+        }
+        else{
+            console.log("the cell is already occupied");
         }
     });
 
@@ -97,16 +100,20 @@ $(document).ready(() => {
             else{
                 $(".first .first-three").text(player_two);
             }
-            count++;
-            if(score() != "draw" && score() != null){
-                console.log(score());
+            result = score();
+            if(result === "X" || result === "O"){
+                console.log("the winner is : "+ result);
             }
-            else if(score() === "draw"){
-                console.log(score());
+            else if(result === "draw"){
+                console.log("the result is : draw");
             }
             else{
                 console.log("continue");
             }
+            count++;
+        }
+        else{
+            console.log("the cell is already occupied");
         }
     });
 
@@ -118,16 +125,20 @@ $(document).ready(() => {
             else{
                 $(".second .second-one").text(player_two);
             }
-            count++;
-            if(score() != "draw" && score() != null){
-                console.log(score());
+            result = score();
+            if(result === "X" || result === "O"){
+                console.log("the winner is : "+ result);
             }
-            else if(score() === "draw"){
-                console.log(score());
+            else if(result === "draw"){
+                console.log("the result is : draw");
             }
             else{
                 console.log("continue");
             }
+            count++;
+        }
+        else{
+            console.log("the cell is already occupied");
         }
     });
 
@@ -139,16 +150,20 @@ $(document).ready(() => {
             else{
                 $(".second .second-two").text(player_two);
             }
-            count++;
-            if(score() != "draw" && score() != null){
-                console.log(score());
+            result = score();
+            if(result === "X" || result === "O"){
+                console.log("the winner is : "+ result);
             }
-            else if(score() === "draw"){
-                console.log(score());
+            else if(result === "draw"){
+                console.log("the result is : draw");
             }
             else{
                 console.log("continue");
             }
+            count++;
+        }
+        else{
+            console.log("the cell is already occupied");
         }
     });
 
@@ -160,16 +175,20 @@ $(document).ready(() => {
             else{
                 $(".second .second-three").text(player_two);
             }
-            count++;
-            if(score() != "draw" && score() != null){
-                console.log(score());
+            result = score();
+            if(result === "X" || result === "O"){
+                console.log("the winner is : "+ result);
             }
-            else if(score() === "draw"){
-                console.log(score());
+            else if(result === "draw"){
+                console.log("the result is : draw");
             }
             else{
                 console.log("continue");
             }
+            count++;
+        }
+        else{
+            console.log("the cell is already occupied");
         }
     });
 
@@ -181,16 +200,20 @@ $(document).ready(() => {
             else{
                 $(".third .third-one").text(player_two);
             }
-            count++;
-            if(score() != "draw" && score() != null){
-                console.log(score());
+            result = score();
+            if(result === "X" || result === "O"){
+                console.log("the winner is : "+ result);
             }
-            else if(score() === "draw"){
-                console.log(score());
+            else if(result === "draw"){
+                console.log("the result is : draw");
             }
             else{
                 console.log("continue");
             }
+            count++;
+        }
+        else{
+            console.log("the cell is already occupid");
         }
     });
 
@@ -202,29 +225,47 @@ $(document).ready(() => {
             else{
                 $(".third .third-two").text(player_two);
             }
-            count++;
-            if(score() != "draw" && score() != null){
-                console.log(score());
+            result = score();
+            if(result === "X" || result === "O"){
+                console.log("the winner is : "+ result);
             }
-            else if(score() === "draw"){
-                console.log(score());
+            else if(result === "draw"){
+                console.log("the result is : draw");
             }
             else{
                 console.log("continue");
             }
+            count++;
+        }
+        else{
+            console.log("the cell is already occupied");
         }
     });
 
     $(".third .third-three").click(()=>{
-        if($(this).text()=== ""){
+        if($(".third .third-three").text()=== ""){
             if(count % 2 === 0){
-                $(this).text(player_one);
+                $(".third .third-three").text(player_one);
+                console.log("one");
             }
             else{
-                $(this).text(player_two);
+                $(".third .third-three").text(player_two);
+                console.log("one");
+            }
+            result = score();
+            if(result === "X" || result === "O"){
+                console.log("the winner is : "+ result);
+            }
+            else if(result === "draw"){
+                console.log("the result is : draw");
+            }
+            else{
+                console.log("continue");
             }
             count++;
-            console.log(score())
+        }
+        else{
+            console.log("the cell is already occupied");
         }
     });
 })
