@@ -1,6 +1,13 @@
 $(document).ready(() => {
     let result;
-    
+    let color = ($template) => {
+        if($template.text() === "O"){
+            $template.css("cssText","color:red !important");
+        }
+        else{
+            $template.css("cssText","color:rgb(19, 115, 160) !important");
+        }
+    }
     let score = () => {
         let winner = null;
         const winningCombos = [
@@ -27,6 +34,19 @@ $(document).ready(() => {
                 $(b).text() === $(c).text()
             ) {
                 winner = $(a).text();
+                $(".cell").css("cssText","display:none !important");
+                $(".score-wrapper").css("cssText","display:block !important");
+                $(".cell").text("");
+                $("#winner").text("The Winner is");
+                if(winner === "O"){
+                    $("#winner").css("cssText","color:rgb(19, 115, 160) !important");
+                    $("#emoji p").css("cssText","color:red !important");
+                }
+                else{
+                    $("#winner").css("cssText","color:red !important");
+                    $("#emoji p").css("cssText","color:rgb(19, 115, 160) !important");
+                }
+                $("#emoji p").text(`${winner}`);
                 break;
             }
         }
@@ -34,6 +54,11 @@ $(document).ready(() => {
         if (!winner && count >= 8) {
             console.log("It's a draw.");
             winner = "draw";
+            $(".cell").css("cssText","display:none !important");
+            $(".score-wrapper").css("cssText","display:block !important");
+            $(".cell").text("");
+            $("#winner").text("It's A Draw!").css("cssText","color:black !important");
+            $("#emoji p").text("😭");
         }
     
         return winner;
@@ -50,6 +75,7 @@ $(document).ready(() => {
             else{
                 $(".first .first-one").text(player_two);
             }
+            color($(".first .first-one"));
             result = score();
             if(result === "X" || result === "O"){
                 console.log("the winner is : "+ result);
@@ -75,6 +101,7 @@ $(document).ready(() => {
             else{
                 $(".first .first-two").text(player_two);
             }
+            color($(".first .first-two"));
             result = score();
             if(result === "X" || result === "O"){
                 console.log("the winner is : "+ result);
@@ -100,6 +127,7 @@ $(document).ready(() => {
             else{
                 $(".first .first-three").text(player_two);
             }
+            color($(".first .first-three"));
             result = score();
             if(result === "X" || result === "O"){
                 console.log("the winner is : "+ result);
@@ -125,6 +153,7 @@ $(document).ready(() => {
             else{
                 $(".second .second-one").text(player_two);
             }
+            color($(".second .second-one"));
             result = score();
             if(result === "X" || result === "O"){
                 console.log("the winner is : "+ result);
@@ -150,6 +179,7 @@ $(document).ready(() => {
             else{
                 $(".second .second-two").text(player_two);
             }
+            color($(".second .second-two"));
             result = score();
             if(result === "X" || result === "O"){
                 console.log("the winner is : "+ result);
@@ -175,6 +205,7 @@ $(document).ready(() => {
             else{
                 $(".second .second-three").text(player_two);
             }
+            color($(".second .second-three"));
             result = score();
             if(result === "X" || result === "O"){
                 console.log("the winner is : "+ result);
@@ -200,6 +231,7 @@ $(document).ready(() => {
             else{
                 $(".third .third-one").text(player_two);
             }
+            color($(".third .third-one"));
             result = score();
             if(result === "X" || result === "O"){
                 console.log("the winner is : "+ result);
@@ -225,6 +257,7 @@ $(document).ready(() => {
             else{
                 $(".third .third-two").text(player_two);
             }
+            color($(".third .third-two"));
             result = score();
             if(result === "X" || result === "O"){
                 console.log("the winner is : "+ result);
@@ -252,6 +285,7 @@ $(document).ready(() => {
                 $(".third .third-three").text(player_two);
                 console.log("one");
             }
+            color($(".third .third-three"));
             result = score();
             if(result === "X" || result === "O"){
                 console.log("the winner is : "+ result);
@@ -268,4 +302,10 @@ $(document).ready(() => {
             console.log("the cell is already occupied");
         }
     });
+    $(".score-wrapper button").click(() => {
+        $(".score-wrapper").css("cssText","display:none !important");
+        $(".cell").css("cssText","display:block !important");
+        count = 0;
+        $(".cell").css("cssText","align-item:center !important");
+    })
 })

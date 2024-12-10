@@ -29,11 +29,11 @@ body{
     display: flex;  
     justify-content: center;
     align-items: center;     
-    text-align: center;     
+    /* text-align: center;      */
     height: 160px;          
     width: 200px;            
     border: 9px solid white;  
-    font-size: 54px;
+    font-size: 84px;
     font-weight: 700;    
     font-family: 'Nunito', sans-serif; 
 }
@@ -47,10 +47,37 @@ body{
     border-left: none;
 }
 .score-wrapper{
+    background-color: whitesmoke;
     display:none;
     width:600px;
+    box-shadow: 10px 10px 10px #436781;
     margin-left: auto;
     margin-right: auto;
     height: 480px;
     margin-top: 90px;
+    border-radius: 35px;
+    
+}
+.score-wrapper button{
+    justify-content: center;
+    width: 250px;
+    background-color: #1C1C1C;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 25px;
+    margin-top: 30px;
+}
+.score-wrapper #winner{
+    font-size: 60px;
+    font-family: 'Nunito',sans-serif;
+    font-weight: 700;
+    padding-top: 100px;
+    color: rgb(214, 38, 38);
+}
+.score-wrapper #emoji{
+    font-size: 120px;
+    color: rgb(19, 115, 160);
 }
